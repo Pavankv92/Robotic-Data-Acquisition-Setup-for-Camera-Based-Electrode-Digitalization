@@ -1,0 +1,131 @@
+\usetheme{mtec}
+\setbeamercovered{transparent}
+
+\usepackage[utf8]{inputenc}
+
+%%%%%%%%%%
+% FONTS %
+%%%%%%%%%%
+
+%% Default font: lmodern, doesn't require fontspec % solves some default warnings
+%\usepackage[T1]{fontenc}
+\usepackage{lmodern}            
+%\usepackage{sfmath}        % Sans Serif Math, off by default
+
+%% Protects fonts from Beamer screwing with them
+%% http://tex.stackexchange.com/questions/10488/force-computer-modern-in-math-mode
+\usefonttheme{professionalfonts}
+
+
+%% XeLaTeX fonts: (comment out if you don't use XeLaTeX)
+
+%% For advanced fonts: access local OS X fonts
+%\usepackage[no-math]{fontspec}
+%% This template uses typical OS X and Adobe fonts
+%\defaultfontfeatures{Mapping=tex-text}  % This seems to be important for mapping glyphs properly
+
+%\setmainfont{Gill Sans MT Pro Book}         % Beamer ignores "main font" in favor of sans font
+%\setsansfont{Gill Sans MT Pro Book}         % This is the font that beamer will use by default
+% \setmainfont{Gill Sans Light}     % Prettier, but harder to read
+
+%\setbeamerfont{title}{family=\fontspec{Gill Sans MT Pro Book}}
+
+
+%\newcommand{\handwriting}{\fontspec{augie}} % From Emerald City, free font
+% \newcommand{\handwriting}{}   % If you prefer no special handwriting font or don't have augie
+
+%% Gill Sans doesn't look very nice when boldfaced
+%% This is a hack to use Helvetica instead
+%% Usage: \textbf{\forbold some stuff}
+%\newcommand{\forbold}{\fontspec{Helvetica}}
+% \newcommand{\forbold}{} % if you want no special boldface
+
+
+\usepackage{textcomp}
+\usepackage{gensymb}
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Usual LaTeX Packages %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{bm}
+\usepackage[separate-uncertainty=true]{siunitx}
+\sisetup{detect-weight}
+
+\usepackage[ngerman, english]{babel}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{epsfig}
+\graphicspath{{../figures/}}
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{shapes,arrows,3d,calc,fit,shadows}
+\usepackage{tikz-3dplot}
+
+%\usepackage{animate}
+%\usepackage{media9}
+
+
+
+\usepackage{hyperref}
+
+\usepackage{xargs}
+
+\makeatletter
+\tikzoption{canvas is xy plane at z}[]{%
+  \def\tikz@plane@origin{\pgfpointxyz{0}{0}{#1}}%
+  \def\tikz@plane@x{\pgfpointxyz{1}{0}{#1}}%
+  \def\tikz@plane@y{\pgfpointxyz{0}{1}{#1}}%
+  \tikz@canvas@is@plane
+}
+\makeatother
+\tikzset{xyp/.style={canvas is xy plane at z=#1}}
+\tikzset{xzp/.style={canvas is xz plane at y=#1}}
+\tikzset{yzp/.style={canvas is yz plane at x=#1}}
+
+%%% Axes orientation for the Scanner Arrangement
+\newcommandx*{\axisorientation}[7][1=220,2=-20,3=90,4=0.75,5=1,6=no]{
+  \renewcommand{\xangle}{#1}
+  \renewcommand{\yangle}{#2}
+  \renewcommand{\zangle}{#3}
+
+  \renewcommand{\xlength}{#4}
+  \renewcommand{\ylength}{#5}
+  \renewcommand{\zlength}{#7}
+  \renewcommand{\lab}{#6}
+
+  \pgfmathsetmacro{\xx}{\xlength*cos(\xangle)}
+  \pgfmathsetmacro{\xy}{\xlength*sin(\xangle)}
+  \pgfmathsetmacro{\yx}{\ylength*cos(\yangle)}
+  \pgfmathsetmacro{\yy}{\ylength*sin(\yangle)}
+  \pgfmathsetmacro{\zx}{\zlength*cos(\zangle)}
+  \pgfmathsetmacro{\zy}{\zlength*sin(\zangle)}
+}
+
+\newcommandx*{\includetikz}[3][1=\linewidth,2=0.3\linewidth]{
+ \newlength{\fwidth}
+ \setlength{\fwidth}{#1}
+ \newlength{\fheight}
+ \setlength{\fheight}{#2}
+ \input{#3}
+ \global\let\fwidth\undefined
+ \global\let\fheight\undefined
+}
+\newcommandx*{\includescaledtikz}[2][1=1]{
+ \newcommand{\myscale}{#1}
+ \input{#2}
+}
+%\usepackage[rgb]{xcolor}
+\newcommand{\matr}[1]{\bm{#1}}     % ISO complying version
+\newcommand{\vect}[1]{\bm{#1}}     % ISO complying version
+
+\newcommand{\tfMat}[3]{{}^\mathrm{#1} \matr{#2}_\mathrm{#3}}
+\newcommand{\invMat}[1]{\matr{#1}^{-1}}

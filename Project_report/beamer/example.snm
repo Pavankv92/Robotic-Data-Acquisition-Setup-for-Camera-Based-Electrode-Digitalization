@@ -1,0 +1,15 @@
+\beamer@slide {fig:Eexperimental_setup}{5}
+\beamer@slide {tab:kinect_camera_calibration_result}{6}
+\beamer@slide {tab:kinect__fusionTrac_handeye_result}{7}
+\beamer@slide {fig:BTi_4D_3}{9}
+\beamer@slide {fig:head_coordinate}{10}
+\beamer@slide {fig:fusionTrac_phantom}{11}
+\beamer@slide {fig:phantom_multiple_axis}{13}
+\beamer@slide {fig:Normalised_positional_error_single_axis}{14}
+\beamer@slide {fig:Normalised_positional_error_multiple_axis}{15}
+\beamer@slide {fig:active_marker_normalised_positional_error}{16}
+\beamer@slide {fig:robot_movement}{17}
+\beamer@slide {fig:blue_cap_all}{18}
+\beamer@slide {fig:electrode_position_range}{19}
+\beamer@slide {eq:hand-eye}{23}
+\beamer@slide {eq:hand-eye_least_square}{23}

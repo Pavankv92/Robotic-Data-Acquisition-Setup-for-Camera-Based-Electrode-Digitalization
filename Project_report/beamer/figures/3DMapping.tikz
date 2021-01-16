@@ -1,0 +1,56 @@
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, text width=3em, text badly centered, node distance=1.75cm, inner sep=0pt,execute at begin node=\tiny]
+\tikzstyle{block} = [rectangle, draw, text width=4.25em, text centered, minimum height=2em, execute at begin node=\scriptsize]
+\tikzstyle{line} = [draw, -latex',execute at begin node=\tiny]
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=1.75cm, minimum height=1.5em]
+%\tikzstyle{decision} = [diamond, draw, fill=blue!20, text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+%\tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=5em, text centered, rounded corners, minimum height=4em]
+%\tikzstyle{line} = [draw, -latex']
+%\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm, minimum height=2em]
+
+\tikzstyle{parallel} =  [draw,trapezium,trapezium left angle=70,trapezium right angle=-70,minimum height=4em]
+
+
+\begin{tikzpicture}[node distance = 2.55cm, auto]
+    % Place nodes
+    \node [block] (pcAcq) {Scanners};
+    \node [block, right of=pcAcq] (pCloud) {3D reconstruction};
+    \node [block, above of=pCloud] (traj) {Trajectory};
+    \node [block, right of=pCloud] (preProc) {Outlier removal};
+    \node [block, right of=preProc] (pcDownsamp) {Down-sampling};
+    \node [block, right of=pcDownsamp] (featEst) {Feature estimation};
+    \node [block, right of=featEst] (modelFit) {Model fitting};
+    \node [block, above of=modelFit] (clust) {Clustering};
+    \node [block, below of=modelFit] (hist) {Histogram analysis};
+
+    \node [block, gray, above of=pcAcq] (regist) {Registration};
+
+    %\node[inner sep=0pt, below of=pCloud] (scannerBoard) {\includegraphics[width=.4\textwidth]{scannerBoard.png}};
+
+    % Draw edges
+    \path [line, gray] (pcAcq) -| node {} ([xshift=0.2cm,yshift=0.65cm]pcAcq.north east) -| (regist);
+    \path [line, gray] (regist) |- (traj);
+
+    \path [line] (pcAcq) -- node [below] {\tiny{2D}} (pCloud);
+    \path [line] (traj) -- node {\tiny{$(x,y,\theta)$}} (pCloud);
+    \path [line] (pCloud) -- node [below,pos=0.35] {\tiny{3D}} (preProc);
+    \path [line] (preProc) -- (pcDownsamp);
+    \path [line] (pcDownsamp) -- (featEst);
+
+    \path [line] (featEst) -- (modelFit);
+
+    \path [line] (featEst) |- (clust);
+
+    \path [line] (featEst) |- (hist);
+
+    %\draw[thick,dotted]     ($(clust.north west)+(-0.25,0.25)$) rectangle ($(hist.south east)+(0.25,-0.25)$);
+    % Finally the blue dotted boxes are drawn as nodes fitted to other nodes
+    \node (dottedbox) [draw, dashed, inner sep=0.4em, fit = (clust) (modelFit) (hist)] {};
+    % Since these boxes are nodes, it is easy to put text above or below them
+    \node at (dottedbox.north) [above, inner sep=3mm] {\textbf{Semantic}};
+
+    \node (dottedbox) [draw, dashed, inner sep=0.4em, fit = (preProc) (pcDownsamp) (featEst)] {};
+    % Since these boxes are nodes, it is easy to put text above or below them
+    \node at (dottedbox.north) [above, inner sep=3mm] {\textbf{Geometric}};
+
+\end{tikzpicture}

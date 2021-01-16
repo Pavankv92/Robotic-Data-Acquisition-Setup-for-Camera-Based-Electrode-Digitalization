@@ -1,0 +1,14 @@
+.vscode
+.json
+
+# Ignore moveit_tutorials
+moveit_tutorials/
+
+# Ignore panda_moveit_config
+panda_moveit_config/
+
+# Ignore universal_robot
+universal_robot/
+
+# Ignore pur3_moveit_config
+pur3_moveit_config/

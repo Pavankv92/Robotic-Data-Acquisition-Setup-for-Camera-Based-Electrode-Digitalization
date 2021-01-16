@@ -1,0 +1,33 @@
+from move it
+
+[[-0.52734691 -0.11446021  0.84190504 -0.60052952]
+ [ 0.01043963 -0.99168253 -0.12828393  0.09997471]
+ [ 0.84958593 -0.05886096  0.52415564  0.16922157]
+ [ 0.          0.          0.          1.        ]]
+
+
+from forward kinematics
+[[-0.11446867  0.84190382  0.52734703  0.60052953]
+ [-0.99168237 -0.12828391 -0.01045583 -0.09997604]
+ [ 0.05884734 -0.52415761  0.84958566  0.16922155]
+ [ 0.          0.          0.          1.        ]]
+
+
+
+
+
+
+
+
+#for handeye calibration cpp node
+roslaunch handeye_calibration handeye_calibration_robot_client_moveit.launch
+
+#to start the service for hand eye start
+roslaunch handeye_calibration handeye_calibration_calibrator
+
+#to move the robot
+rosrun robot_move ur5_move.py
+
+#to rosbag
+rosbag record -b 0 -O sensor /k4a/depth_to_rgb/camera_info /k4a/depth_to_rgb/image_rect /k4a/rgb/camera_info /k4a/rgb/image_rect_color /k4a/points2 /joint_states 
+

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <!-- robot_ip: IP-address of the robot's socket-messaging server -->
+  <arg name="robot_ip" default="127.0.0.1"/>
+  <arg name="limited" default="false"/>
+  <arg name="min_payload"  default="0.0"/>
+  <arg name="max_payload"  default="5.0"/>
+  <arg name="prefix" default="" />
+  <!-- robot model -->
+  <include file="$(find ur_description)/launch/ur5_upload.launch">
+    <arg name="limited" value="$(arg limited)"/>
+  </include>
+  
+  <!-- ur common -->
+  <include file="$(find ur_modern_driver)/launch/ur_common.launch">
+    <arg name="prefix"  value="$(arg prefix)" />
+    <arg name="robot_ip" value="$(arg robot_ip)"/>
+    <arg name="min_payload"  value="$(arg min_payload)"/>
+    <arg name="max_payload"  value="$(arg max_payload)"/>
+  </include>
+
+
+  <node pkg="forward_kinematics" name="inverse_server" type="inverse_server.py" output="screen" />
+  <node pkg="forward_kinematics" name="call_inverse_and_move" type="call_inverse_and_move.py" output="screen"/>
+  <node pkg="forward_kinematics" name="test_movement" type="test_movement.py" output="screen"/>
+
+</launch>

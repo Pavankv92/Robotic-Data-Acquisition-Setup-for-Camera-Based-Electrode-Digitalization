@@ -1,0 +1,29 @@
+\section{Pre-Data Acquisition steps}
+\begin{frame}
+	\frametitle{Camera calibration}
+		\begin{table}[hbt]
+			\centering
+			\begin{tabular}{|c|c|c|}
+				\hline
+				Parameters & calibrated values \\ 
+				\hline
+				$\alpha_x$  & \num{968.7}  \\
+				$\alpha_y$ & \num{968.9} \\
+				S & 0.0 \\
+				$C_x$ & \num{1026} \\
+				$C_y$ & \num{774.0} \\
+				$K_1$ & \num{0.07588} \\
+				$K_2$ & \num{0.04285}  \\
+				$P_1$ & \num{-0.00064} \\
+				$P_2$ & \num{0.00132}  \\
+				$K_3$ & \num{-0.25794} \\
+				\hline
+			\end{tabular}
+			\caption{Microsoft Azure Kinect calibration result}
+			\label{tab:kinect_camera_calibration_result}
+		\end{table}
+	\begin{block}{Implementation}
+		Camera calibration is implemented in OpenCV
+	\end{block}
+		
+\end{frame}

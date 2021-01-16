@@ -1,0 +1,14 @@
+\mode<presentation>
+
+% Frame title
+\defbeamertemplate*{frametitle}{mtec}[1][]
+{
+  \begin{tikzpicture}
+  \useasboundingbox(0,0) rectangle(\the\paperwidth, 1.1cm);
+	\node [anchor= south west ] at (-0.24cm,0) {\parbox{9.4cm}{\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}{\insertframetitle}}};
+	\node [anchor= south west ] at (9.7,0.4) {\parbox{2.5cm}{\tiny \usebeamercolor[fg]{title}{\insertshortdate} \textcolor{black!70!white}{Slide: \insertframenumber/\inserttotalframenumber}}};
+%no subframes!
+  \end{tikzpicture}
+}
+
+\mode<all>

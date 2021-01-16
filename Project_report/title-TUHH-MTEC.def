@@ -1,0 +1,201 @@
+\ProvidesFile{%
+  title%
+  -TUHH-MTEC%
+ .def%
+}[%
+  2013/10/25 v0.1
+  KOMA presents the title page project
+]
+\begingroup
+  \def\PackageNotLoadedError#1{%
+    \GenericError{%
+      (#1)\@spaces\@spaces\@spaces\@spaces
+    }{%
+      File `#1' Error: package `titlepage' hasn't been loaded%
+    }{%
+      This definition file was made to be loaded by package
+      `titlepage'.\MessageBreak
+      You may not use it without package `titlepage'!\MessageBreak
+      See the documentation of package `titlepage' for explanation.%
+    }%
+  }%
+  \ifx\csname titlepage.sty@vers\endcsname\relax
+    \PackageNotLoadedError{%
+      title-TUHH-MTEC.def%
+    }%
+  \fi
+\endgroup
+\DefineFamilyMember[%
+  TUHH-MTEC%
+]{title}
+\renewcommand*{\inittitle}{%
+\ifmtecreprt@grayscaletitle
+	\definecolor{keycolor1}{gray}{.5}
+		\ifx\@titlehead\@empty
+			\titlehead{%
+				\IfStrEq*{\languagename}{english}%
+					{\includegraphics[width=\dimexpr\paperwidth-90mm\relax]{logo/logo_tuhh_gray_en}}%
+					{\includegraphics[width=\dimexpr\paperwidth-90mm\relax]{logo/logo_tuhh_gray_de}}%
+			}%
+		\fi
+		\ifx\@mainlogo\@empty
+			\mainlogo{%
+				\includegraphics[height=12mm]{logo/logo_mtec_gray}
+			}%
+		\fi
+\else
+	\definecolor{keycolor1}{RGB}{88, 190, 184} % cyan
+	\definecolor{keycolor1}{RGB}{31, 73,125} % mtec-logo-blue
+	\ifx\@titlehead\@empty
+		\titlehead{%
+			\IfStrEq*{\languagename}{english}%
+				{\includegraphics[width=\dimexpr\paperwidth-90mm\relax]{logo/logo_tuhh_en}}%
+				{\includegraphics[width=\dimexpr\paperwidth-90mm\relax]{logo/logo_tuhh_de}}%
+		}%
+	\fi
+	\ifx\@mainlogo\@empty
+		\mainlogo{%
+			\includegraphics[height=12mm]{logo/logo_mtec}
+		}%
+	\fi
+\fi
+	\ifx\@companylogo\@empty
+		\ifx\@companylogofile\@empty%
+		\else%
+			\companylogo{%
+				\includegraphics[height=12mm]{\@companylogofile}
+			}%
+		\fi
+	\fi
+  \ifx\@university\@empty
+    \university{%
+      \tuhhname{}
+    }%
+  \fi
+  \ifx\@faculty\@empty
+    \faculty{%
+      \mtecname
+    }%
+  \fi
+  \ifx\@place\@empty
+    \place{%
+      \buildingname{} E | 21073 Hamburg
+    }%
+  \fi
+	\ifx\@website\@empty
+    \website{%
+      www.tuhh.de/mtec
+    }%
+  \fi
+  \ifx\@titlepagefont\@empty
+    \renewcommand*{\@titlepagefont}{\rmfamily}%
+  \fi
+	
+	\IfStrEq{\@subject}{project}{\subjectstr{\projectpapername{}}}{%
+		\IfStrEq{\@subject}{seminar}{\subjectstr{\seminarpapername{}}}{%
+			\IfStrEq{\@subject}{studentresearch}{\subjectstr{\studentresearchname{}}}{%
+				\IfStrEq{\@subject}{diploma}{\subjectstr{\diplomathesisname{}}}{%
+					\IfStrEq{\@subject}{degree}{\subjectstr{\degreethesisname{}}}{%
+						\IfStrEq{\@subject}{master}{\subjectstr{\masterthesisname{}}}{%
+							\IfStrEq{\@subject}{bachelor}{\subjectstr{\bachelorthesisname{}}}{%
+								\subjectstr{\projectpapername{}} %
+							}%
+						}%
+					}%
+				}%
+			}%
+		}%
+	}%
+}
+\renewcommand*{\makemaintitle}{%
+  \begin{%
+    fullsizetitle}
+    \setlength{\parskip}{\z@}%
+    \setlength{\parindent}{\z@}%
+    \setlength{\parfillskip}{\z@\@plus 1fil}%
+    \linespread{1}\selectfont
+    \@titlepagefont
+    \vskip\dimexpr -\baselineskip+25mm\relax
+    \vskip 10em
+    \hspace*{45mm}%
+\ifx\ta@bcor\undefined\else
+\ifmtecreprt@nobcorignoretitle\else
+\hskip-\ta@bcor % ignoring BCOR % TODO: make this optional
+\fi
+\fi
+    \begin{minipage}[t][\dimexpr\paperheight-90mm\relax][t]
+      {\dimexpr\paperwidth-90mm\relax}
+			\noindent\centering \@titlehead\par
+    \noindent\raggedright
+\vskip 1em
+\vfill
+\begingroup
+    \noindent\raggedright
+		{\textcolor{keycolor1}
+    {\Large \lineskip 0.75em
+            \begin{tabular}[t]{@{}l@{}}
+              \@author
+            \end{tabular}
+          }\par}
+    \vskip 2em
+		
+    {\titlefont{\Huge\usekomafont{title}\linespread{0.9}\selectfont \textcolor{keycolor1}\@title\par}}\par
+    \vskip 1em
+		
+    {\ifx\@subtitle\@empty\else\usekomafont{subtitle} \textcolor{keycolor1}\@subtitle\par\fi}%
+
+\endgroup
+\vfill
+\noindent\raggedright
+    \begin{minipage}[b]{0.575\textwidth}
+    \color{keycolor1}
+\small
+\@faculty\par
+\@place\par
+\@website
+    \end{minipage}
+    \hspace{\fill}%
+    %\raisebox{-0.5\height}{\@mainlogo}\par
+\begin{minipage}[b]{0.4\textwidth}
+\raggedleft\@mainlogo\par
+\end{minipage}
+\vskip 2.5em
+{%
+	\centering%
+	\ifx\@company%
+		\@empty{}%
+	\else%
+		{\color{keycolor1} \incollaborationwithname{} \@company}\par%
+		\ifx\@companylogo\@empty
+		\else%
+			\vspace{1em}
+			\@companylogo\par%
+		\fi		
+	\fi%
+}
+\end{minipage}
+  \end{%
+    fullsizetitle}
+		
+\cleardoublepage
+\thispagestyle{empty}
+\noindent \articleAname{} %
+\IfStrEq*{\languagename}{english}{\MakeLowercase{\@subjectstr{}}}{\@subjectstr{}} %
+\writtenatthename{} \@faculty{} {\ifx\@company\@empty{}\else{\incollaborationwithname{} \@company}\fi}\submittedinpartialfulfillmentname{} \@degree.\par
+\vskip 1em
+\noindent \authorname{}: \@author\par
+\vskip 1em
+\noindent \titlename{}: \@title\par
+\vskip 1em
+\noindent \datename{}: \@date\par
+\vskip 1em
+\noindent \begin{tabular}[t]{@{}ll@{}}
+	\supervisorsname{}: 	& \@firstsupervisor \\
+											\ & \@professor \\
+											\ & \ \\
+	\refereesname{}: 	  & \@firstreferee \\
+										\ & \@secondreferee
+\end{tabular}
+
+}
+\endinput

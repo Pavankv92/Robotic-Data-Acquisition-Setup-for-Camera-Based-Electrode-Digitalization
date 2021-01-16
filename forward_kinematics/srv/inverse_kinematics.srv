@@ -1,0 +1,6 @@
+float64[16] pose
+float64[6] joint_states
+bool speed
+---
+float64[6] theta
+float64 time

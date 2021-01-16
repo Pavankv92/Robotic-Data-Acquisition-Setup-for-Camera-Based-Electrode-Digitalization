@@ -1,0 +1,13 @@
+# This service computes the handeye calibration using QR24
+#
+# The Arrays must be synchronized. i.e each pair
+# camera_marker[ind] and base_effector[ind]
+# must represent one pose of the robot measured by the kinect and the robot itself respectively
+#
+azure_kinect_camera/TransformArray camera_marker #Array of marker poses with respect to kinect (ir camera)
+azure_kinect_camera/TransformArray base_effector #Array of endeffector poses with respect to the robot base
+string outfile_prefix # prefix of the output files
+---
+# Calibration Results
+geometry_msgs/Transform effector_marker #Pose of the marker with respect to the endeffector
+geometry_msgs/Transform base_camera #Pose of the kinect (ir camera) with respect to the robot base

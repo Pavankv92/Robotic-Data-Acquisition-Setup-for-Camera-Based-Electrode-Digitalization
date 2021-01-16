@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+    Launches gazebo, ur5 moveit framework and rviz
+    
+    Usage:
+        bringup.launch
+-->
+
+
+<launch>
+
+<!--
+    <include file="$(find ur_gazebo)/launch/ur5_joint_limited.launch">
+    </include>
+-->
+
+    <include file="$(find ur_modern_driver)/launch/ur5_bringup_joint_limited.launch">
+        <arg name="robot_ip" value="$(arg robot_ip)"/>
+    </include>
+
+    <!-- sim can be removed when running on the real robot-->
+    <include file="$(find ur5_moveit_config)/launch/ur5_moveit_planning_execution.launch">
+        <arg name="limited" value="True"/>
+        <arg name="sim" value="false"/>
+    </include> 
+        
+    <include file="$(find ur5_moveit_config)/launch/moveit_rviz.launch">
+        <arg name="config" value="True"/>
+    </include> 
+
+</launch>

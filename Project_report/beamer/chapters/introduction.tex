@@ -1,0 +1,14 @@
+Electroencephalography(EEG) is an electrophysiological monitoring method to record the electrical activity of the brain. EEG measures voltage fluctuations resulting from ionic current within the neurons of the brain with the help of electrodes attached to the scalp \cite{EEG}. It is therefore evident to know the electrode locations on the scalp.
+
+Several electrode detection methods based on cheap cameras and RGBD images have been developed so far \cite{ASingleCameraPhotogrammetry} \cite{Reis2015UsingAM} which are suitable for the fixed head position. A convolutional neural network (CNNs) based method has been proposed \cite{2019arXiv190804186G} which is suitable when head movement is inevitable and fast detection is needed. The latter method also highlights a large amount of ground truth data generation using a robotic setup. In this thesis, a complete robotic set up required for data generation has been realized. The primary goal of this project is to generate ground truth data set i.e. the exact position of the electrodes in head coordinate systems for different electrode caps and different cap positions which can be used to evaluate algorithms for electrode detection using conventional camera.
+
+A phantom head wearing an EEG cap is mounted on to the robot's end-effector followed by head coordinate system creation and manual electrode mapping. RGBD images of the phantom head along with the end-effector position will be captured while the robot is moved along specified trajectories. The process is repeated with three different caps and orientation.
+
+The thesis structure is as follows : In chapter 2 we provide a brief introduction of pinhole camera model, projection matrix, the process involved in the camera calibration.
+
+In chapter 3 we present the experimental setup required along with hardware descriptions and the purpose of the hardware used. Then we explain what are the key software packages used in the project. A detailed explanation of hand-eye calibration, the corresponding algorithms, head coordinate creation, and the electrode mapping are given.
+
+In chapter 4 we present the results achieved for camera calibration, hand-eye calibration, and head coordinate system created using anatomical features of the face. 
+We also discuss the effects of orientation of the marker and movement of the phantom and resulting errors on the estimation of electrode position. We graphically present the position of electrodes for easy visualization. We present the data for 5 EEG cap wearing instances to show the extent to which position of the electrodes varies. 
+
+In the last chapter, we conclude by discussing the limitations of the robotic setup and provide the scope for improvements.

@@ -1,0 +1,27 @@
+\section{Data Acquisition}
+\begin{frame}
+	\frametitle{Electrode mapping solution}
+	\begin{itemize}
+		\item First tranfer the head coordiante system to the end effector frame
+			\begin{equation*}
+			\tfMat{EE}{T}{H_{CS}} = \invMat{(\tfMat{Base}{T}{EE})} \tfMat{Base}{T}{fCam} \tfMat{fCam}{T}{H_{CS}}
+			\end{equation*}
+		\item Record all the electrodes in the end effector frame
+			\begin{equation*}
+			\tfMat{EE}{T}{electrodes} = \invMat{(\tfMat{Base}{T}{EE})} \tfMat{Base}{T}{fCam} \tfMat{fCam}{T}{electrodes}
+			\end{equation*} 
+		  \item hhh
+		  \begin{equation*}
+		  \tfMat{kCam}{T}{electrodes}^j =
+		   \invMat{(\tfMat{Base}{T}{kCam})} \tfMat{Base}{T}{EE}^j
+		   \tfMat{EE}{T}{electrodes}
+			\end{equation*} 
+			\item where, j $\in$ N [1,2,.......N]
+	\end{itemize}
+\begin{block}{solution}
+	decoupling allowed head movement during electcode mapping
+\end{block}
+		
+\end{frame}
+
+

@@ -1,0 +1,29 @@
+\section{Accuracy of measurement}
+\begin{frame}
+	\frametitle{Head movement during electrode mapping}
+	\begin{figure}[hbt!]
+		\centering
+		\begin{subfigure}{0.49\textwidth}
+			\includegraphics[width=\textwidth]{phantom_single_axis.png}	
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}{0.49\textwidth}
+			\includegraphics[width=\textwidth]{phantom_multiple_axis.png}	
+		\end{subfigure}
+		\caption{Phantom head rotation along single and multiple axes.} 
+		\label{fig:phantom_multiple_axis}
+	\end{figure} 
+	\begin{itemize}
+		\item Transfer all the electrode position to head coordinate system
+		\begin{equation*}
+		\tfMat{H_{CS}}{T}{electrodes} = \invMat{(\tfMat{EE}{T}{H_{CS}})} \tfMat{EE}{T}{electrodes}
+		\end{equation*}
+	\end{itemize}
+
+\begin{block}{Error}
+	Head movement while mapping introduced an error!
+\end{block}
+	
+\end{frame}
+
+

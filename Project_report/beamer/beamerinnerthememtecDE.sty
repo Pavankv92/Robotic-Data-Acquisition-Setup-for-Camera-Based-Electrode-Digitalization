@@ -1,0 +1,47 @@
+\mode<presentation>
+
+\setbeamertemplate{background}{
+	\definecolor{mteccolor}{RGB}{0,69,138}
+	 \renewcommand{\familydefault}{\sfdefault} %kurzes Dokument -> keine serifen!
+	\begin{tikzpicture}
+		\ifnum\thepage<2\relax%
+			\useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+			% position of logos only work correctly in 4:3
+			\node[anchor=north west, inner sep=0] at (1.16864cm,8.5229cm) {\includegraphics[height=1.58cm]{logoTUHH.pdf}};
+			\node[anchor=north west, inner sep=0] (mtec) at (8.3cm,4.896cm) {\includegraphics[height=1.281cm]{logoMTEC.pdf}};
+			\draw [anchor=north west,line width = 0.17cm, color=mteccolor]  (mtec.south west) ++(-2pt,4.4pt) -- ++(-12cm,0cm);
+			\draw [anchor=north east,line width = 0.17cm, color=mteccolor]  (mtec.south east) ++(2pt,4.4pt) -- ++(5cm,0cm);	
+			\fill[color=white,fill=white] 
+    				 (mtec.south west) node {}
+ 				++(-7.14cm-1pt,4.4pt) node[anchor=west,inner sep=1pt,draw,fill] {\textcolor{mteccolor}{\footnotesize{\textbf{Institut für Medizintechnische Systeme}}}};
+			%\draw[anchor=north west]  (1.16864cm,8.5229cm) --  (1.16864cm,0cm);
+		\fi
+		\ifnum\thepage>1\relax%
+			\fill[white,opacity=1] (0,0) rectangle(\the\paperwidth,\the\paperheight);
+			\draw [anchor=north west,line width = 1.5pt, color=red]  (0.65cm,8.5) 
+				-- ++(9.8cm,0cm)
+				++ (1pt, -1.5pt) node[anchor=south west, inner sep=0] {\includegraphics[width=1.28cm]{logoMTECFrames.pdf}};
+		\fi
+	\end{tikzpicture}
+}
+
+% Title page
+\defbeamertemplate*{title page}{mtec}[1][]
+{ 
+   \usetikzlibrary{calc}
+   \renewcommand{\familydefault}{\sfdefault} %kurzes Dokument -> keine serifen!
+	\begin{tikzpicture}
+		\useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);	
+		\node [anchor=north west, inner sep=0] at (7.6cm,3.4cm) {\parbox{4cm}{\usebeamercolor[fg]{author}{\footnotesize{\textbf{\insertdate}}}}};
+  		\node [anchor= west ] at (0.21864cm,4.7cm) {\parbox{7cm}{\usebeamerfont{author}\usebeamercolor[fg]{author}{\insertauthor}}};
+		\node [anchor= west] at (0.21864cm,2cm) {\parbox{9.8cm}{\usebeamerfont{title}\usebeamercolor[fg]{title}{\inserttitle}}};
+	\end{tikzpicture}
+  \vfill
+}
+
+% Items
+%\setbeamertemplate{items}[square]
+\setbeamertemplate{sections/subsections in toc}[square]
+
+\mode
+<all>

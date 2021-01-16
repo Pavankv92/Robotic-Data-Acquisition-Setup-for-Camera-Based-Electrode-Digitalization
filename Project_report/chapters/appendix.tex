@@ -1,0 +1,33 @@
+\section{Least square problem} There are 2 types of least square problems, non-homogenious \( \matr{A} \vect{x} = \vect{b}\)  (type I) and homogenious  \( \matr{A} \vect{x} = \vect{0}\) (type II).
+\subsection{Type I} Consider A system of equations \( \matr{A} \vect{x} = \vect{b}\) where $\matr{A}$ is m $\times$ n matrix. 
+\begin{enumerate}
+	\item if m < n then, there are more unknowns than the number of equations. In this case, there are infinitely many solutions.
+	\item if m = n then, In this case, there is an exact solution (unique).
+	\item if m > n then, there are more equations (data points) than the number of unknowns which is usually the  case most of the times. In this case there is no exact solution but we can minimize the algebraic error by solving \( \displaystyle \min_{x \in \mathtt{R}^n} \|Ax - b\|^2 = 0 \  \textrm{s.t.}\ \|b\| \ne 0\).
+	\item assuming matrix $\matr{A}$ is invertable,the solution is \( \vect{x} = \invMat{(\matr{A}^T\matr{A})}\matr{A}^T\vect{b}\)
+\end{enumerate}
+
+
+\subsection{Type II} Consider A system of equations \( \matr{A} \vect{x} = \vect{0}\) where $\matr{A}$ is m $\times$ n matrix. we will see what is the solution to case m > n where there are more equations (data points) than the number of unknowns.
+\begin{enumerate}
+	\item As there is no exact solution, we can minimize the geometric error by solving \( \displaystyle \min_{x \in \mathtt{R}^n} \|Ax\|^2 = 0 \  \textrm{s.t.}\ \|x\| = 1\).
+	\item the solution $\vect{x}$ is the right nullspace of matrix $\matr{A}$ and is obtained from unit sigular value of A corresponding to the smallest singular value i.e if SVD of $ \matr{A} = \matr{U}\matr{D}\matr{V}^T $, then $\vect{x}$ is the last coulmn of $\matr{V}$.
+\end{enumerate}
+
+\section{Rotation matrix}  Task is to find the rotation matrix $\matr{R}$ which is closest approximation to the given matrix $\matr{Q}$. The "best" here means that the Frobenius norm of the $[\matr{R} -  \matr{Q}]$ is minimized. 
+
+\begin{equation*}
+	\centering
+	\displaystyle \min_{R} \|R - Q\|_{F}^{2}\ \  \textrm{s.t.}\ R^TR = I
+\end{equation*}
+
+\noindent if SVD of $ \matr{Q} = \matr{U}\matr{D}\matr{V}^T $ , then Matrix $\matr{R}$ which satisfies above condition is  $\matr{R} = \matr{U}\matr{V}^T$ per \cite{Zhang}.
+
+
+
+
+
+
+
+
+

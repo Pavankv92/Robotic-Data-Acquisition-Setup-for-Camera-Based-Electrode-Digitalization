@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+    launches the ROS node for Azure kinect subscribes the Pose estimation node to it.
+-->
+<launch>
+<!---->
+    <include file="$(find azure_kinect_ros_driver)/launch/driver.launch">
+    <arg name="fps" value="$(arg fps)"/>
+    
+    </include>
+
+<!-- launching pose estimation--> 
+    
+    <node name="chkbd_pose_estimation" pkg="azure_kinect_camera" type="chkbd_pose_estimation.py" output="screen"/>
+    
+</launch>
