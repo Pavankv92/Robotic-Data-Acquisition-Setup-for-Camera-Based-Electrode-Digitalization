@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<launch>
-    <node name="electrode_map" pkg="tracking_camera" type="electrode_map.py" output="screen"/>
-</launch>
